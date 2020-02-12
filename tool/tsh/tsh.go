@@ -461,17 +461,17 @@ func onLogin(cf *CLIConf) {
 
 	// -i flag specified? save the retreived cert into an identity file
 	makeIdentityFile := (cf.IdentityFileOut != "")
-	activateKey := !makeIdentityFile
+	//activateKey := !makeIdentityFile
 
-	key, err = tc.Login(cf.Context, activateKey)
+	key, err = tc.Login(cf.Context, true)
 	if err != nil {
 		utils.FatalError(err)
 	}
 
 	if makeIdentityFile {
-		if err := setupNoninteractiveClient(tc, key); err != nil {
-			utils.FatalError(err)
-		}
+		//if err := setupNoninteractiveClient(tc, key); err != nil {
+		//	utils.FatalError(err)
+		//}
 		authorities, err := tc.GetTrustedCA(cf.Context, key.ClusterName)
 		if err != nil {
 			utils.FatalError(err)
